@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link, Route } from "wouter";
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 import Receipt from './receipt/receipt'
@@ -13,21 +13,29 @@ const layout = () =>{
     return(
         <>
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">E-Faktury</Navbar.Brand>
+                <Link href="/"><Navbar.Brand href="#home">E-Faktury</Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#">Paragony</Nav.Link>
-                        <Nav.Link href="#">Faktury</Nav.Link>
-                        <Nav.Link href="#">Faktury zaliczkowe</Nav.Link>
-                        <Nav.Link href="#">Dokumenty</Nav.Link>
+                        <Link href="/paragony"><Nav.Link>Paragony</Nav.Link></Link>
+                        <Link href="/faktury"><Nav.Link>Faktury</Nav.Link></Link>
+                        <Link href="/faktury_zaliczkowe"><Nav.Link>Faktury Zaliczkowe</Nav.Link></Link>
+                        <Link href="/dokumenty"><Nav.Link>Dokumenty</Nav.Link></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Receipt/>
-            <Invoice/>
-            <Prepayment/>
-            <Issued/>
+            <Route path="/paragony">
+                <Receipt/>
+            </Route>
+            <Route path="/faktury">
+                <Invoice/>
+            </Route>
+            <Route path="/faktury_zaliczkowe">
+                <Prepayment/>
+            </Route>
+            <Route path="/dokumenty">
+                <Issued/>
+            </Route>
         </>
 
     )
