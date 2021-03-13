@@ -6,7 +6,6 @@ import './login.scss'
 
 const login = () =>{
     return(
-        // <Container fluid className="loginContainer">
         <div className="loginContainer">
             <Jumbotron className="loginJumbotron">
                 <Form>
@@ -28,8 +27,6 @@ const login = () =>{
 
             </Jumbotron>
         </div>
-
-        // </Container>
 
     )
 }
