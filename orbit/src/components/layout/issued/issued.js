@@ -4,6 +4,28 @@ import { Jumbotron, Col, Row, Table } from 'react-bootstrap';
 import './issued.scss'
 
 const issued = (props) =>{
+
+    const itemList = (
+
+         props.invoices[0].items.map((item, index) =>
+            <tr>
+                <td>1</td>
+                <td>{props.invoices[0].items[index].product}</td>
+                <td>{props.invoices[0].items[index].PKWiU}</td>
+                <td>{props.invoices[0].items[index].GTU}</td>
+                <td>{props.invoices[0].items[index].quantity}</td>
+                <td>{props.invoices[0].items[index].unit}</td>
+                <td>{props.invoices[0].items[index].unitNetPrice}</td>
+                <td>{props.invoices[0].items[index].unitNetPrice*props.invoices[0].items[0].quantity}</td>
+                <td>{props.invoices[0].items[index].VAT}</td>
+                <td>{props.invoices[0].items[index].VATRate}</td>
+                <td>{props.invoices[0].items[index].grossValue}</td>
+            </tr>
+
+         )
+    )
+
+
     return(
         <>
             <div>Wystawione dokumenty:</div>
@@ -54,19 +76,20 @@ const issued = (props) =>{
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>{props.invoices.product}</td>
-                            <td>{props.invoices.PKWiU}</td>
-                            <td>{props.invoices.GTU}</td>
-                            <td>{props.invoices.quantity}</td>
-                            <td>{props.invoices.unit}</td>
-                            <td>{props.invoices.unitNetPrice}</td>
-                            <td>{props.invoices.unitNetPrice*props.invoices.quantity}</td>
-                            <td>{props.invoices.VAT}</td>
-                            <td>{props.invoices.VATRate}</td>
-                            <td>{props.invoices.grossValue}</td>
-                        </tr>
+                        {/*<tr>*/}
+                            {itemList}
+                            {/*<td>1</td>*/}
+                            {/*<td>{props.invoices[0].items[0].product}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].PKWiU}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].GTU}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].quantity}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].unit}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].unitNetPrice}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].unitNetPrice*props.invoices[0].items[0].quantity}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].VAT}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].VATRate}</td>*/}
+                            {/*<td>{props.invoices[0].items[0].grossValue}</td>*/}
+                        {/*</tr>*/}
                         </tbody>
                     </Table>
                 </Row>

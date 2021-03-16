@@ -32,31 +32,92 @@ class Layout extends Component {
             currency:'Polski złoty',
             account:'mbank',
             accountNumber:'1111 2222 3333 4444 5555',
-            product:'Książki edykacyjne',
-            PKWiU:'12345.55.44',
-            quantity:'100',
-            unit:'szt.',
-            unitNetPrice:'100',
-            VATRate:'5',
-            VatExemption:'nie',
-            GTU:'0',
-            VAT:'5',
-            grossValue:'105',
-            productAmount:'1',
+            // items: [{product:'Książki edukacyjne',
+            //     PKWiU:'12345.55.44',
+            //     quantity:'100',
+            //     unit:'szt.',
+            //     unitNetPrice:'100',
+            //     VATRate:'5',
+            //     VatExemption:'nie',
+            //     GTU:'0',
+            //     VAT:'5',
+            //     grossValue:'105',}],
+            items: [],
+            productAmount:'0',
         },
-        invoices:{
-
-        }
+        item: {product:'jajko',
+            PKWiU:'222',
+            quantity:'1500100900',
+            unit:'szt.',
+            unitNetPrice:'1',
+            VATRate:'1',
+            VatExemption:'tak',
+            GTU:'0',
+            VAT:'0',
+            grossValue:'1'},
+        invoices:[{number: 'qwerty123456',
+            issueDate: '13.03.2021',
+            saleDate: '10.03.2021',
+            type: 'Osoba prywatna',
+            origin: 'Francja',
+            NIP: '111111111',
+            name:'Fundacja marzenia',
+            address:'Długa',
+            zipCode:'30-231',
+            city:'Kraków',
+            country:'Polska',
+            email:'fundacjamarzenia@gmail.com',
+            transaction:'Krajowa',
+            paymentMethod:'Przelew',
+            paymentStatus:'Opłacone',
+            dueDate:'20.03.2021',
+            currency:'Polski złoty',
+            account:'mbank',
+            accountNumber:'1111 2222 3333 4444 5555',
+            items: [{product:'',
+                PKWiU:'',
+                quantity:'',
+                unit:'',
+                unitNetPrice:'',
+                VATRate:'',
+                VatExemption:'',
+                GTU:'',
+                VAT:'',
+                grossValue:'',}],
+            productAmount:'1',}]
     }
 
-    inputChangeHandler(event, type){
+    inputChangeHandler(event, type, itemsType){
 
         const updatedInvoice = {
             ...this.state.invoice
         }
-        updatedInvoice[type] = event.target.value
-        this.setState({invoice: updatedInvoice})
 
+        const updatedItem = {
+            ...this.state.item
+        }
+
+        if (type === 'items'){
+            updatedItem[itemsType] = event.target.value
+        }
+        else{
+            updatedInvoice[type] = event.target.value
+        }
+
+        this.setState({invoice: updatedInvoice})
+        this.setState({item: updatedItem})
+
+        console.log(this.state.item)
+    }
+
+    addItemHandler = () => {
+
+        const updatedInvoice = {
+            ...this.state.invoice
+        }
+
+        updatedInvoice.items.push(this.state.item)
+        this.setState({invoice: updatedInvoice})
         console.log(this.state.invoice)
     }
 
@@ -64,8 +125,8 @@ class Layout extends Component {
         const updatedInvoice = {
             ...this.state.invoice
         }
-        this.setState({invoices:updatedInvoice})
-        console.log(this.state.invoices)
+        this.setState({invoices:[updatedInvoice]})
+        console.log(this.state.invoices[0].items[0])
     }
 
     render(){
@@ -90,6 +151,7 @@ class Layout extends Component {
                     <Invoice
                         inputChange={this.inputChangeHandler.bind(this)}
                         sendInvoice={this.sendInvoiceHandler}
+                        addItem={this.addItemHandler}
                     />
                 </Route>
                 <Route path="/faktury_zaliczkowe">

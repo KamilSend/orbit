@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Container, Row, Col, Jumbotron, Button } from 'react-bootstrap';
 
+import AddProduct from './addProduct/addProduct'
+
 import './invoice.scss'
 
 const invoice = (props) =>{
@@ -196,60 +198,8 @@ const invoice = (props) =>{
                         /></Col>
                     </Row>
                 </Jumbotron>
-                <Jumbotron>
-                    <Row>
-                        <Col><h2>Lista pozycji na fakturze</h2></Col>
-                    </Row>
-                    <Row>
-                        <Col>Produkt/Usługa</Col>
-                        <Col>PKWiU</Col>
-                        <Col>Ilość</Col>
-                        <Col>Jednostka</Col>
-                        <Col>Cena jedn. netto</Col>
-                    </Row>
-                    <Row>
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'product')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'PKWiU')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'quantity')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'unit')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'unitNetPrice')}
-                        />
-                    </Row>
-                    <Row>
-                        <Col>Stawka VAT</Col>
-                        <Col>Zwolnienie z VAT</Col>
-                        <Col>Wartość GTU</Col>
-                        <Col>Wartość VAT</Col>
-                        <Col>Wartość brutto</Col>
-                    </Row>
-                    <Row>
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'VATRate')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'VatExemption')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'GTU')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'VAT')}
-                        />
-                        <input type="text"
-                               onChange={(event) => props.inputChange(event, 'grossValue')}
-                        />
-                    </Row>
-                    <Button>Dodaj pozycję</Button>
-                </Jumbotron>
+                <AddProduct inputChange = {props.inputChange}/>
+                <Button onClick={props.addItem}>Dodaj pozycję</Button>
                 <Jumbotron>
                     <Row>
                         <Col><h2>Podsumowanie</h2></Col>
