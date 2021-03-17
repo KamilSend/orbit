@@ -1,12 +1,32 @@
 import React from 'react'
 
-import { Container, Row, Col, Jumbotron, Button } from 'react-bootstrap';
+import { Container, Row, Col, Jumbotron, Button, Table } from 'react-bootstrap';
 
 import AddProduct from './addProduct/addProduct'
 
 import './invoice.scss'
 
 const invoice = (props) =>{
+
+    const itemList = (
+
+        props.items.map((item, index) =>
+            <tr>
+                <td>{index+1}</td>
+                <td>{props.items[index].product}</td>
+                <td>{props.items[index].PKWiU}</td>
+                <td>{props.items[index].GTU}</td>
+                <td>{props.items[index].quantity}</td>
+                <td>{props.items[index].unit}</td>
+                <td>{props.items[index].unitNetPrice}</td>
+                <td>{props.items[index].unitNetPrice*props.items[index].quantity}</td>
+                <td>{props.items[index].VAT}</td>
+                <td>{props.items[index].VATRate}</td>
+                <td>{props.items[index].grossValue}</td>
+            </tr>
+        )
+    )
+
     return(
         <>
             <Container>
@@ -198,7 +218,17 @@ const invoice = (props) =>{
                         /></Col>
                     </Row>
                 </Jumbotron>
-                <AddProduct inputChange = {props.inputChange}/>
+                <Jumbotron>
+                    <Row>
+                        <Col><h2>Lista pozycji na fakturze</h2></Col>
+                    </Row>
+                    <Table>
+                    <tbody>
+                    {itemList}
+                    </tbody>
+                    </Table>
+                    <AddProduct inputChange = {props.inputChange}/>
+                </Jumbotron>
                 <Button onClick={props.addItem}>Dodaj pozycję</Button>
                 <Jumbotron>
                     <Row>

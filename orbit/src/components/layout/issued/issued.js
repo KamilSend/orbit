@@ -9,14 +9,14 @@ const issued = (props) =>{
 
          props.invoices[0].items.map((item, index) =>
             <tr>
-                <td>1</td>
+                <td>{index+1}</td>
                 <td>{props.invoices[0].items[index].product}</td>
                 <td>{props.invoices[0].items[index].PKWiU}</td>
                 <td>{props.invoices[0].items[index].GTU}</td>
                 <td>{props.invoices[0].items[index].quantity}</td>
                 <td>{props.invoices[0].items[index].unit}</td>
                 <td>{props.invoices[0].items[index].unitNetPrice}</td>
-                <td>{props.invoices[0].items[index].unitNetPrice*props.invoices[0].items[0].quantity}</td>
+                <td>{props.invoices[0].items[index].unitNetPrice*props.invoices[0].items[index].quantity}</td>
                 <td>{props.invoices[0].items[index].VAT}</td>
                 <td>{props.invoices[0].items[index].VATRate}</td>
                 <td>{props.invoices[0].items[index].grossValue}</td>
@@ -61,6 +61,7 @@ const issued = (props) =>{
                 <Row>
                     <Table>
                         <thead>
+                            <Col><h2>Lista pozycji na fakturze</h2></Col>
                         <tr>
                             <th>LP.</th>
                             <th>Nazwa towaru lub usługi</th>
@@ -76,20 +77,7 @@ const issued = (props) =>{
                         </tr>
                         </thead>
                         <tbody>
-                        {/*<tr>*/}
-                            {itemList}
-                            {/*<td>1</td>*/}
-                            {/*<td>{props.invoices[0].items[0].product}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].PKWiU}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].GTU}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].quantity}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].unit}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].unitNetPrice}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].unitNetPrice*props.invoices[0].items[0].quantity}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].VAT}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].VATRate}</td>*/}
-                            {/*<td>{props.invoices[0].items[0].grossValue}</td>*/}
-                        {/*</tr>*/}
+                                {itemList}
                         </tbody>
                     </Table>
                 </Row>

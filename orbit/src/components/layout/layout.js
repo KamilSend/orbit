@@ -152,6 +152,7 @@ class Layout extends Component {
                         inputChange={this.inputChangeHandler.bind(this)}
                         sendInvoice={this.sendInvoiceHandler}
                         addItem={this.addItemHandler}
+                        items={this.state.invoice.items}
                     />
                 </Route>
                 <Route path="/faktury_zaliczkowe">

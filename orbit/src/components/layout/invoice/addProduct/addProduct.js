@@ -3,10 +3,7 @@ import { Col, Jumbotron, Row} from "react-bootstrap";
 
 const addProduct = (props) => {
     return(
-        <Jumbotron>
-            <Row>
-                <Col><h2>Lista pozycji na fakturze</h2></Col>
-            </Row>
+    <>
             <Row>
                 <Col>Produkt/Usługa</Col>
                 <Col>PKWiU</Col>
@@ -55,8 +52,7 @@ const addProduct = (props) => {
                        onChange={(event) => props.inputChange(event, 'items', 'grossValue')}
                 />
             </Row>
-
-        </Jumbotron>
+    </>
     )
 }
 
