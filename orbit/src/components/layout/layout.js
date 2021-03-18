@@ -46,7 +46,9 @@ class Layout extends Component {
             GTU:'0',
             VAT:'0',
             grossValue:'0'},
-        invoices:[]
+        invoices:[],
+        receipts:[],
+        prepayments:[],
     }
 
     inputChangeHandler(event, type, itemsType){
@@ -90,17 +92,33 @@ class Layout extends Component {
             grossValue:'0'}})
     }
 
-    sendInvoiceHandler = () => {
+    sendInvoiceHandler(type){
         const updatedInvoice = {...this.state.invoice}
 
-        const updatedInvoices = [...this.state.invoices]
+        switch(type){
+            case 'invoice':{
+                const updatedInvoices = [...this.state.invoices]
+                updatedInvoices.push(updatedInvoice)
+                this.setState({invoices:updatedInvoices})
+                break;
+            }
+            case 'receipt':{
+                const updatedReceipts = [...this.state.receipts]
+                updatedReceipts.push(updatedInvoice)
+                this.setState({receipts:updatedReceipts})
+                break;
+            }
+            case 'prepayment':{
+                const updatedPrepayments = [...this.state.prepayments]
+                updatedPrepayments.push(updatedInvoice)
+                this.setState({prepayments:updatedPrepayments})
+                break;
+            }
 
-        updatedInvoices.push(updatedInvoice)
+            default: break;
+        }
 
-        // console.log(updatedInvoice)
-        // console.log(updatedInvoices)
 
-        this.setState({invoices:updatedInvoices})
         this.setState({invoice:{
                 number: 'qwerty123456',
                 issueDate: '13.03.2021',
@@ -125,7 +143,6 @@ class Layout extends Component {
                 items: [],
                 productAmount:'0',
             }})
-        // console.log(this.state.invoices)
     }
 
     render(){
@@ -144,12 +161,19 @@ class Layout extends Component {
                     </Navbar.Collapse>
                 </Navbar>
                 <Route path="/paragony">
-                    <Receipt/>
+                    <Receipt
+                        inputChange={this.inputChangeHandler.bind(this)}
+                        sendInvoice={this.sendInvoiceHandler.bind(this)}
+                        addItem={this.addItemHandler}
+                        invoice={this.state.invoice}
+                        items={this.state.invoice.items}
+                        item={this.state.item}
+                    />
                 </Route>
                 <Route path="/faktury">
                     <Invoice
                         inputChange={this.inputChangeHandler.bind(this)}
-                        sendInvoice={this.sendInvoiceHandler}
+                        sendInvoice={this.sendInvoiceHandler.bind(this)}
                         addItem={this.addItemHandler}
                         invoice={this.state.invoice}
                         items={this.state.invoice.items}
@@ -157,11 +181,20 @@ class Layout extends Component {
                     />
                 </Route>
                 <Route path="/faktury_zaliczkowe">
-                    <Prepayment/>
+                    <Prepayment
+                        inputChange={this.inputChangeHandler.bind(this)}
+                        sendInvoice={this.sendInvoiceHandler.bind(this)}
+                        addItem={this.addItemHandler}
+                        invoice={this.state.invoice}
+                        items={this.state.invoice.items}
+                        item={this.state.item}
+                    />
                 </Route>
                 <Route path="/dokumenty">
                     <Issued
                         invoices={this.state.invoices}
+                        receipts={this.state.receipts}
+                        prepayments={this.state.prepayments}
                     />
                 </Route>
             </>

@@ -39,7 +39,7 @@ const invoice = (props) =>{
                     addItem={props.addItem}
                 />
                 <Summary
-                    sendInvoice={props.sendInvoice}
+                    sendInvoice={() => props.sendInvoice('invoice')}
                 />
             </Container>
         </>
