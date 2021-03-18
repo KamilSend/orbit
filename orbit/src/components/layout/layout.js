@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Route } from "wouter";
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import Receipt from './receipt/receipt'
 import Invoice from './invoice/invoice'
@@ -15,57 +15,117 @@ class Layout extends Component {
         invoice:{
             number: 'qwerty123456',
             issueDate: '13.03.2021',
-            saleDate: '10.03.2021',
-            type: 'Osoba prywatna',
-            origin: 'Francja',
-            NIP: '111111111',
-            name:'Fundacja marzenia',
-            address:'Długa',
-            zipCode:'30-231',
-            city:'Kraków',
-            country:'Polska',
-            email:'fundacjamarzenia@gmail.com',
-            transaction:'Krajowa',
-            paymentMethod:'Przelew',
-            paymentStatus:'Opłacone',
-            dueDate:'20.03.2021',
-            currency:'Polski złoty',
-            account:'mbank',
-            accountNumber:'1111 2222 3333 4444 5555',
-            product:'Książki edykacyjne',
-            PKWiU:'12345.55.44',
-            quantity:'100',
-            unit:'szt.',
-            unitNetPrice:'100',
-            VATRate:'5',
-            VatExemption:'nie',
-            GTU:'0',
-            VAT:'5',
-            grossValue:'105',
-            productAmount:'1',
+            saleDate: '',
+            place:'',
+            type: '',
+            origin: '',
+            NIP: '',
+            name:'',
+            address:'',
+            zipCode:'',
+            city:'',
+            country:'',
+            email:'',
+            transaction:'',
+            paymentMethod:'',
+            paymentStatus:'',
+            dueDate:'',
+            currency:'',
+            account:'',
+            accountNumber:'',
+            items: [],
+            productAmount:'0',
         },
-        invoices:{
-
-        }
+        item: {product:'',
+            PKWiU:'',
+            quantity:'',
+            unit:'',
+            unitNetPrice:'',
+            VATRate:'',
+            VatExemption:'',
+            GTU:'0',
+            VAT:'0',
+            grossValue:'0'},
+        invoices:[]
     }
 
-    inputChangeHandler(event, type){
+    inputChangeHandler(event, type, itemsType){
 
         const updatedInvoice = {
             ...this.state.invoice
         }
-        updatedInvoice[type] = event.target.value
-        this.setState({invoice: updatedInvoice})
 
-        console.log(this.state.invoice)
+        const updatedItem = {
+            ...this.state.item
+        }
+
+        if (type === 'items'){
+            updatedItem[itemsType] = event.target.value
+            this.setState({item: updatedItem})
+        }
+        else{
+            updatedInvoice[type] = event.target.value
+        }
+
+        this.setState({invoice: updatedInvoice})
+    }
+
+    addItemHandler = () => {
+
+        const updatedInvoice = JSON.parse(JSON.stringify(this.state.invoice))
+
+        const updatedItem = {...this.state.item}
+
+        updatedInvoice.items.push(updatedItem)
+        this.setState({invoice: updatedInvoice})
+        this.setState({item:{product:'',
+            PKWiU:'',
+            quantity:'',
+            unit:'',
+            unitNetPrice:'',
+            VATRate:'',
+            VatExemption:'',
+            GTU:'0',
+            VAT:'0',
+            grossValue:'0'}})
     }
 
     sendInvoiceHandler = () => {
-        const updatedInvoice = {
-            ...this.state.invoice
-        }
-        this.setState({invoices:updatedInvoice})
-        console.log(this.state.invoices)
+        const updatedInvoice = {...this.state.invoice}
+
+        const updatedInvoices = [...this.state.invoices]
+
+        updatedInvoices.push(updatedInvoice)
+
+        // console.log(updatedInvoice)
+        // console.log(updatedInvoices)
+
+        this.setState({invoices:updatedInvoices})
+        this.setState({invoice:{
+                number: 'qwerty123456',
+                issueDate: '13.03.2021',
+                saleDate: '',
+                place:'',
+                type: '',
+                origin: '',
+                NIP: '',
+                name:'',
+                address:'',
+                zipCode:'',
+                city:'',
+                country:'',
+                email:'',
+                transaction:'',
+                paymentMethod:'',
+                paymentStatus:'',
+                dueDate:'',
+                currency:'',
+                account:'',
+                accountNumber:'',
+                items: [],
+                productAmount:'0',
+            }})
+        // console.log(this.state.invoices)
     }
 
     render(){
@@ -90,6 +150,10 @@ class Layout extends Component {
                     <Invoice
                         inputChange={this.inputChangeHandler.bind(this)}
                         sendInvoice={this.sendInvoiceHandler}
+                        addItem={this.addItemHandler}
+                        invoice={this.state.invoice}
+                        items={this.state.invoice.items}
+                        item={this.state.item}
                     />
                 </Route>
                 <Route path="/faktury_zaliczkowe">
