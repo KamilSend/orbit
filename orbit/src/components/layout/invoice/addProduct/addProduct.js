@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Jumbotron, Row} from "react-bootstrap";
+import { Col, Row} from "react-bootstrap";
 
 const addProduct = (props) => {
     return(
@@ -14,18 +14,23 @@ const addProduct = (props) => {
             <Row>
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'product')}
+                       value={props.item.product}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'PKWiU')}
+                       value={props.item.PKWiU}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'quantity')}
+                       value={props.item.quantity}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'unit')}
+                       value={props.item.unit}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'unitNetPrice')}
+                       value={props.item.unitNetPrice}
                 />
             </Row>
             <Row>
@@ -38,18 +43,23 @@ const addProduct = (props) => {
             <Row>
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'VATRate')}
+                       value={props.item.VATRate}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'VatExemption')}
+                       value={props.item.VatExemption}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'GTU')}
+                       value={props.item.GTU}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'VAT')}
+                       value={props.item.VAT}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'grossValue')}
+                       value={props.item.grossValue}
                 />
             </Row>
     </>
