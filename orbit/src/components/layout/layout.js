@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Link, Route } from "wouter";
-import { Navbar, Nav } from 'react-bootstrap';
+import {Navbar, Nav, Button} from 'react-bootstrap';
+import { signout } from '../../helpers/auth'
 
 import Receipt from './receipt/receipt'
 import Invoice from './invoice/invoice'
 import Prepayment from './prepayment/prepayment'
 import Issued from './issued/issued'
+import Signup from '../authentication/signup/signup'
+import Login from '../authentication/login/login'
 
 import './layout.scss'
 
@@ -157,6 +160,7 @@ class Layout extends Component {
                             <Link href="/faktury"><Nav.Link>Faktury</Nav.Link></Link>
                             <Link href="/faktury_zaliczkowe"><Nav.Link>Faktury Zaliczkowe</Nav.Link></Link>
                             <Link href="/dokumenty"><Nav.Link>Dokumenty</Nav.Link></Link>
+                            <Button onClick={signout}>Wyloguj</Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -197,6 +201,12 @@ class Layout extends Component {
                         prepayments={this.state.prepayments}
                     />
                 </Route>
+                {/*<Route path="/" exact>*/}
+                {/*    <Login/>*/}
+                {/*</Route>*/}
+                {/*<Route path="/signup">*/}
+                {/*    <Signup/>*/}
+                {/*</Route>*/}
             </>
 
         )
