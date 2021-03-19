@@ -16,12 +16,13 @@ const buyer = (props) =>{
                         onChange={(event) => props.inputChange(event, 'type')}
                         value={props.invoice.type}
                     >
-                        <option value="firma">Firma</option>
                         <option value="Osoba prywatna">Osoba prywatna</option>
+                        <option value="firma">Firma</option>
                     </select>
                 </Col>
             </Row>
-            <Row>
+            {props.invoice.type==='firma'?
+                <Row>
                 <Col>NIP</Col>
                 <Col>
                     <input
@@ -30,7 +31,7 @@ const buyer = (props) =>{
                         value={props.invoice.NIP}
                     />
                 </Col>
-            </Row>
+            </Row>:null}
             <Row>
                 <Col>Nazwa</Col>
                 <Col><input
