@@ -10,7 +10,6 @@ const issuedInvoice = (props) => {
                 <td>{index+1}</td>
                 <td>{props.invoices.items[index].product}</td>
                 <td>{props.invoices.items[index].PKWiU}</td>
-                <td>{props.invoices.items[index].GTU}</td>
                 <td>{props.invoices.items[index].quantity}</td>
                 <td>{props.invoices.items[index].unit}</td>
                 <td>{props.invoices.items[index].unitNetPrice}</td>
@@ -60,7 +59,6 @@ const issuedInvoice = (props) => {
                         <th>LP.</th>
                         <th>Nazwa towaru lub usługi</th>
                         <th>PKWiU</th>
-                        <th>GTU</th>
                         <th>Ilość</th>
                         <th>Jedn.</th>
                         <th>Cena jedn. netto</th>

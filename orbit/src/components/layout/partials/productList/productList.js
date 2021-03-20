@@ -11,7 +11,6 @@ const productList = (props) =>{
                 <td>{index+1}</td>
                 <td>{props.items[index].product}</td>
                 <td>{props.items[index].PKWiU}</td>
-                <td>{props.items[index].GTU}</td>
                 <td>{props.items[index].quantity}</td>
                 <td>{props.items[index].unit}</td>
                 <td>{props.items[index].unitNetPrice}</td>
@@ -30,6 +29,18 @@ const productList = (props) =>{
             </Row>
             <Table>
                 <tbody>
+                    <tr>
+                        <th>LP.</th>
+                        <th>Nazwa towaru lub usługi</th>
+                        <th>PKWiU</th>
+                        <th>Ilość</th>
+                        <th>Jedn.</th>
+                        <th>Cena jedn. netto</th>
+                        <th>Wartość netto</th>
+                        <th>Wartość VAT</th>
+                        <th>Stawka VAT</th>
+                        <th>Wartość brutto</th>
+                    </tr>
                 {itemList}
                 </tbody>
             </Table>
