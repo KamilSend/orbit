@@ -9,7 +9,11 @@ const summary = (props) =>{
             </Row>
             <Row>
                 <Col>Wartość netto</Col>
-                <Col><input type="text"/></Col>
+                <Col><input
+                    type="text"
+                    disabled
+
+                /></Col>
             </Row>
             <Row>
                 <Col>Wartość VAT</Col>

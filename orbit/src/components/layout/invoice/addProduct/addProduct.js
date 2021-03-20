@@ -34,14 +34,14 @@ const addProduct = (props) => {
                 />
             </Row>
             <Row>
-                <Col>Stawka VAT</Col>
+                <Col>Stawka VAT (%)</Col>
                 <Col>Zwolnienie z VAT</Col>
-                <Col>Wartość GTU</Col>
+                <Col>Wartość netto</Col>
                 <Col>Wartość VAT</Col>
                 <Col>Wartość brutto</Col>
             </Row>
             <Row>
-                <input type="text"
+                <input type="number"
                        onChange={(event) => props.inputChange(event, 'items', 'VATRate')}
                        value={props.item.VATRate}
                 />
@@ -50,8 +50,8 @@ const addProduct = (props) => {
                        value={props.item.VatExemption}
                 />
                 <input type="text"
-                       onChange={(event) => props.inputChange(event, 'items', 'GTU')}
-                       value={props.item.GTU}
+                       onChange={(event) => props.inputChange(event, 'items', '')}
+                       value={props.item.unitNetPrice*props.item.quantity}
                 />
                 <input type="text"
                        onChange={(event) => props.inputChange(event, 'items', 'VAT')}

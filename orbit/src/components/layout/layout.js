@@ -7,8 +7,6 @@ import Receipt from './receipt/receipt'
 import Invoice from './invoice/invoice'
 import Prepayment from './prepayment/prepayment'
 import Issued from './issued/issued'
-import Signup from '../authentication/signup/signup'
-import Login from '../authentication/login/login'
 
 import './layout.scss'
 
@@ -65,8 +63,11 @@ class Layout extends Component {
         }
 
         if (type === 'items'){
-            updatedItem[itemsType] = event.target.value
-            this.setState({item: updatedItem})
+                updatedItem[itemsType] = event.target.value
+                updatedItem.VAT = updatedItem.VATRate*updatedItem.quantity*updatedItem.unitNetPrice*0.01
+                if(updatedItem.VatExemption!=='') updatedItem.VAT=0
+                updatedItem.grossValue = updatedItem.VAT+updatedItem.unitNetPrice*updatedItem.quantity
+                this.setState({item: updatedItem})
         }
         else{
             updatedInvoice[type] = event.target.value
@@ -201,12 +202,6 @@ class Layout extends Component {
                         prepayments={this.state.prepayments}
                     />
                 </Route>
-                {/*<Route path="/" exact>*/}
-                {/*    <Login/>*/}
-                {/*</Route>*/}
-                {/*<Route path="/signup">*/}
-                {/*    <Signup/>*/}
-                {/*</Route>*/}
             </>
 
         )
