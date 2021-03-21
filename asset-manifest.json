@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/orbit/static/css/main.46a04fad.chunk.css",
+    "main.js": "/orbit/static/js/main.8076a983.chunk.js",
+    "main.js.map": "/orbit/static/js/main.8076a983.chunk.js.map",
+    "runtime-main.js": "/orbit/static/js/runtime-main.17aaa4ad.js",
+    "runtime-main.js.map": "/orbit/static/js/runtime-main.17aaa4ad.js.map",
+    "static/js/2.f903613d.chunk.js": "/orbit/static/js/2.f903613d.chunk.js",
+    "static/js/2.f903613d.chunk.js.map": "/orbit/static/js/2.f903613d.chunk.js.map",
+    "static/js/3.6011b269.chunk.js": "/orbit/static/js/3.6011b269.chunk.js",
+    "static/js/3.6011b269.chunk.js.map": "/orbit/static/js/3.6011b269.chunk.js.map",
+    "index.html": "/orbit/index.html",
+    "static/css/main.46a04fad.chunk.css.map": "/orbit/static/css/main.46a04fad.chunk.css.map",
+    "static/js/2.f903613d.chunk.js.LICENSE.txt": "/orbit/static/js/2.f903613d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.17aaa4ad.js",
+    "static/js/2.f903613d.chunk.js",
+    "static/css/main.46a04fad.chunk.css",
+    "static/js/main.8076a983.chunk.js"
+  ]
+}
