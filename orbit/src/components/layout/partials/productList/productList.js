@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Col, Container, Jumbotron, Row, Table} from "react-bootstrap";
+import {Button, Col, Jumbotron, Row, Table} from "react-bootstrap";
 import AddProduct from "../../invoice/addProduct/addProduct";
 
 const productList = (props) =>{

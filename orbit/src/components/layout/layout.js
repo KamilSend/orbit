@@ -211,8 +211,7 @@ class Layout extends Component {
 
         axios.get('https://efaktury-d30eb-default-rtdb.firebaseio.com/invoices.json')
             .then(response => {
-                // console.log(JSON. parse(response.data));
-                console.log(response);
+                // console.log(response);
                 const invoices = [{number: response.data.number,
                     issueDate: response.data.issueDate,
                     saleDate: response.data.saleDate,
@@ -226,7 +225,7 @@ class Layout extends Component {
                     city:response.data.city,
                     country:response.data.country,
                     email:response.data.email,
-                    transaction:'',
+                    transaction:response.data.transaction,
                     paymentMethod:response.data.paymentMethod,
                     paymentStatus:response.data.paymentStatus,
                     dueDate:response.data.dueDate,
@@ -253,7 +252,7 @@ class Layout extends Component {
                         grossValue:response.data.summary.grossValue,
                     }}]
 
-                console.log(invoices)
+                // console.log(invoices)
 
                 this.setState({invoices:invoices})
                 }

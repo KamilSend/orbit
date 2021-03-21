@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Col, Container, Jumbotron, Row, Table} from 'react-bootstrap';
+import { Container, Jumbotron, Table} from 'react-bootstrap';
 
 import BasicData from '../partials/basicData/basicData'
 import Salesman from '../partials/salesman/salesman'

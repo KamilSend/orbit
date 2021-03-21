@@ -18,7 +18,7 @@ class App extends Component {
 
         auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log(user.uid)
+                // console.log(user.uid)
                 this.setState({
                     authenticated: true,
                     userID:user.uid,
@@ -29,8 +29,7 @@ class App extends Component {
                     authenticated: false,
                 });
             }
-            console.log(this.state.authenticated)
-
+            // console.log(this.state.authenticated)
         })
     }
     render() {

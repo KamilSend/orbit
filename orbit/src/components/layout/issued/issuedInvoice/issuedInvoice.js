@@ -1,6 +1,8 @@
 import React from 'react'
 import {Col, Jumbotron, Row, Table} from "react-bootstrap";
 
+import './issuedInvoice.scss'
+
 const issuedInvoice = (props) => {
 
     const itemList = (
@@ -24,7 +26,7 @@ const issuedInvoice = (props) => {
     )
 
     return(
-        <Jumbotron>
+        <Jumbotron className="invoiceWrapper">
             <Row>
                 <Col xs={6}><h2>E-Faktury</h2></Col>
                 <Col xs={6}>
@@ -56,7 +58,7 @@ const issuedInvoice = (props) => {
             <Row>
                 <Table>
                     <thead>
-                    <Col><h2>Lista pozycji na fakturze</h2></Col>
+                    {/*<Col><h2>Lista pozycji na fakturze</h2></Col>*/}
                     <tr>
                         <th>LP.</th>
                         <th>Nazwa towaru lub usługi</th>
@@ -73,7 +75,7 @@ const issuedInvoice = (props) => {
                     <tbody>
                     {itemList}
                     <tr>
-                        <td>Podsumowanie:</td>
+                        <td><b>Podsumowanie:</b></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -93,37 +95,40 @@ const issuedInvoice = (props) => {
                     </tbody>
                 </Table>
             </Row>
-            <Row>Szczegóły zamówienia</Row>
+            <div className="details">
+                <Row><b>Szczegóły zamówienia:</b></Row>
+                <Row>
+                    <Col>Transakcja</Col>
+                    <Col>{props.invoices.transaction}</Col>
+                    <Col>Waluta</Col>
+                    <Col>{props.invoices.currency}</Col>
+                </Row>
+                <Row>
+                    <Col>Forma płatności</Col>
+                    <Col>{props.invoices.paymentMethod}</Col>
+                    <Col>Status płatności</Col>
+                    <Col>{props.invoices.paymentStatus}</Col>
+                </Row>
+                <Row>
+                    <Col>Bank</Col>
+                    <Col>{props.invoices.account}</Col>
+                    <Col>Numer konta</Col>
+                    <Col>{props.invoices.accountNumber}</Col>
+                </Row>
+                <Row>
+                    <Col>Płatność do</Col>
+                    <Col>{props.invoices.dueDate}</Col>
+                    <Col>Sprzedaż realizowana przez</Col>
+                    <Col>Najlepsza drukarnia internetowa</Col>
+                </Row>
+            </div>
+
             <Row>
-                <Col>Transakcja</Col>
-                <Col>{props.invoices.transaction}</Col>
-                <Col>Waluta</Col>
-                <Col>{props.invoices.currency}</Col>
-            </Row>
-            <Row>
-                <Col>Forma płatności</Col>
-                <Col>{props.invoices.paymentMethod}</Col>
-                <Col>Status płatności</Col>
-                <Col>{props.invoices.paymentStatus}</Col>
-            </Row>
-            <Row>
-                <Col>Bank</Col>
-                <Col>{props.invoices.account}</Col>
-                <Col>Numer konta</Col>
-                <Col>{props.invoices.accountNumber}</Col>
-            </Row>
-            <Row>
-                <Col>Płatność do</Col>
-                <Col>{props.invoices.dueDate}</Col>
-                <Col>Sprzedaż realizowana przez</Col>
-                <Col>Najlepsza drukarnia internetowa</Col>
-            </Row>
-            <Row>
-                <Col>
+                <Col className="sign">
                     <Row>Imię, nazwisko i podpis osoby</Row>
                     <Row>uprawnionej do odbioru dokumentu</Row>
                 </Col>
-                <Col>
+                <Col className="sign">
                     <Row>Jan Kowalski</Row>
                     <Row>Imię, nazwisko i podpis osoby</Row>
                     <Row>uprawnionej do wystawienia dokumentu</Row>

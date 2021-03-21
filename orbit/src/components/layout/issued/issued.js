@@ -13,6 +13,7 @@ const issued = (props) =>{
                 invoices={props.invoices[index]}
                 invoiceIndex={index}
                 type='faktura'
+                key={index}
             />
             //jeżeli invoice.open: false <span>invoice.number</span>
             //na spanie onClick który zmienia invoice.open na true

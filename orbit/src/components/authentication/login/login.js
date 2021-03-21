@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import axios from 'axios'
 
-import {Button, Jumbotron, Form, Nav} from 'react-bootstrap';
+import {Button, Jumbotron, Form } from 'react-bootstrap';
 import {signin} from "../../../helpers/auth";
 
 import './login.scss'
