@@ -6,19 +6,20 @@ const issuedInvoice = (props) => {
     const itemList = (
 
          props.invoices.items.map((item, index) =>
-            <tr>
-                <td>{index+1}</td>
-                <td>{props.invoices.items[index].product}</td>
-                <td>{props.invoices.items[index].PKWiU}</td>
-                <td>{props.invoices.items[index].GTU}</td>
-                <td>{props.invoices.items[index].quantity}</td>
-                <td>{props.invoices.items[index].unit}</td>
-                <td>{props.invoices.items[index].unitNetPrice}</td>
-                <td>{props.invoices.items[index].unitNetPrice*props.invoices.items[index].quantity}</td>
-                <td>{props.invoices.items[index].VAT}</td>
-                <td>{props.invoices.items[index].VATRate}</td>
-                <td>{props.invoices.items[index].grossValue}</td>
-            </tr>
+             <>
+                <tr>
+                    <td>{index+1}</td>
+                    <td>{props.invoices.items[index].product}</td>
+                    <td>{props.invoices.items[index].PKWiU}</td>
+                    <td>{props.invoices.items[index].quantity}</td>
+                    <td>{props.invoices.items[index].unit}</td>
+                    <td>{props.invoices.items[index].unitNetPrice}</td>
+                    <td>{props.invoices.items[index].unitNetPrice*props.invoices.items[index].quantity}</td>
+                    <td>{props.invoices.items[index].VAT}</td>
+                    <td>{props.invoices.items[index].VATRate}</td>
+                    <td>{props.invoices.items[index].grossValue}</td>
+                </tr>
+             </>
          )
     )
 
@@ -51,7 +52,7 @@ const issuedInvoice = (props) => {
                     <Row>{props.invoices.zipCode} {props.invoices.city}</Row>
                 </Col>
             </Row>
-            <Row><Col><h1>{props.invoices.number}</h1></Col></Row>
+            <Row><Col><h1>{props.type}/{props.invoices.number}</h1></Col></Row>
             <Row>
                 <Table>
                     <thead>
@@ -60,7 +61,6 @@ const issuedInvoice = (props) => {
                         <th>LP.</th>
                         <th>Nazwa towaru lub usługi</th>
                         <th>PKWiU</th>
-                        <th>GTU</th>
                         <th>Ilość</th>
                         <th>Jedn.</th>
                         <th>Cena jedn. netto</th>
@@ -72,6 +72,24 @@ const issuedInvoice = (props) => {
                     </thead>
                     <tbody>
                     {itemList}
+                    <tr>
+                        <td>Podsumowanie:</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{props.invoices.summary.netValue}</td>
+                        <td>{props.invoices.summary.VATValue}</td>
+                        <td></td>
+                        <td>{props.invoices.summary.grossValue}</td>
+                    </tr>
+                    {props.invoices.paid === ''?null:(
+                        <tr>
+                            <td>Opłacono: {props.invoices.paid}</td>
+                            <td>Pozostało do zapłaty: {props.invoices.summary.grossValue-props.invoices.paid}</td>
+                        </tr>
+                    )}
                     </tbody>
                 </Table>
             </Row>

@@ -7,8 +7,6 @@ import Receipt from './receipt/receipt'
 import Invoice from './invoice/invoice'
 import Prepayment from './prepayment/prepayment'
 import Issued from './issued/issued'
-import Signup from '../authentication/signup/signup'
-import Login from '../authentication/login/login'
 
 import './layout.scss'
 
@@ -38,6 +36,7 @@ class Layout extends Component {
             accountNumber:'',
             items: [],
             productAmount:'0',
+            paid:'',
         },
         item: {product:'',
             PKWiU:'',
@@ -50,6 +49,23 @@ class Layout extends Component {
             VAT:'0',
             grossValue:'0'},
         invoices:[],
+        summaries:{
+            invoice:{
+                netValue:'',
+                VATValue:'',
+                grossValue:'',
+            },
+            receipt:{
+                netValue:'',
+                VATValue:'',
+                grossValue:'',
+            },
+            prepayment:{
+                netValue:'',
+                VATValue:'',
+                grossValue:'',
+            },
+        },
         receipts:[],
         prepayments:[],
     }
@@ -65,14 +81,38 @@ class Layout extends Component {
         }
 
         if (type === 'items'){
-            updatedItem[itemsType] = event.target.value
-            this.setState({item: updatedItem})
+                updatedItem[itemsType] = event.target.value
+                updatedItem.VAT = updatedItem.VATRate*updatedItem.quantity*updatedItem.unitNetPrice*0.01
+                if(updatedItem.VatExemption!=='') updatedItem.VAT=0
+                updatedItem.grossValue = updatedItem.VAT+updatedItem.unitNetPrice*updatedItem.quantity
+                this.setState({item: updatedItem})
         }
         else{
             updatedInvoice[type] = event.target.value
         }
 
         this.setState({invoice: updatedInvoice})
+    }
+
+    summaryCounter(type){
+        const updatedInvoice = JSON.parse(JSON.stringify(this.state.invoice))
+        const updatedSummaries = {...this.state.summaries}
+        let VAT = 0;
+        let netValue = 0;
+        let grossValue = 0;
+        for (let i = 0; i < updatedInvoice.items.length; ++i) {
+            VAT += updatedInvoice.items[i].VAT;
+            netValue +=updatedInvoice.items[i].quantity*updatedInvoice.items[i].unitNetPrice
+            grossValue =+ VAT + netValue
+        }
+        updatedSummaries[type].VATValue = VAT
+        updatedSummaries[type].netValue = netValue
+        updatedSummaries[type].grossValue = grossValue
+        console.log(VAT)
+        console.log(netValue)
+        console.log(grossValue)
+        this.setState({summaries:updatedSummaries})
+        console.log(this.state.summaries)
     }
 
     addItemHandler = () => {
@@ -97,6 +137,8 @@ class Layout extends Component {
 
     sendInvoiceHandler(type){
         const updatedInvoice = {...this.state.invoice}
+        const updatedSummaries = {...this.state.summaries}
+        updatedInvoice.summary = updatedSummaries[type]
 
         switch(type){
             case 'invoice':{
@@ -145,7 +187,23 @@ class Layout extends Component {
                 accountNumber:'',
                 items: [],
                 productAmount:'0',
+                paid:'',
             }})
+        this.setState({summaries:{invoice:{
+                    netValue:'',
+                    VATValue:'',
+                    grossValue:'',
+                },
+                receipt:{
+                    netValue:'',
+                    VATValue:'',
+                    grossValue:'',
+                },
+                prepayment:{
+                    netValue:'',
+                    VATValue:'',
+                    grossValue:'',
+                },}})
     }
 
     render(){
@@ -172,6 +230,8 @@ class Layout extends Component {
                         invoice={this.state.invoice}
                         items={this.state.invoice.items}
                         item={this.state.item}
+                        invoiceSummary={this.state.summaries.receipt}
+                        summaryCounter={this.summaryCounter.bind(this)}
                     />
                 </Route>
                 <Route path="/faktury">
@@ -180,8 +240,11 @@ class Layout extends Component {
                         sendInvoice={this.sendInvoiceHandler.bind(this)}
                         addItem={this.addItemHandler}
                         invoice={this.state.invoice}
+                        invoices={this.state.invoices}
                         items={this.state.invoice.items}
                         item={this.state.item}
+                        invoiceSummary={this.state.summaries.invoice}
+                        summaryCounter={this.summaryCounter.bind(this)}
                     />
                 </Route>
                 <Route path="/faktury_zaliczkowe">
@@ -192,6 +255,8 @@ class Layout extends Component {
                         invoice={this.state.invoice}
                         items={this.state.invoice.items}
                         item={this.state.item}
+                        invoiceSummary={this.state.summaries.prepayment}
+                        summaryCounter={this.summaryCounter.bind(this)}
                     />
                 </Route>
                 <Route path="/dokumenty">
@@ -199,14 +264,9 @@ class Layout extends Component {
                         invoices={this.state.invoices}
                         receipts={this.state.receipts}
                         prepayments={this.state.prepayments}
+                        summaries={this.state.summaries}
                     />
                 </Route>
-                {/*<Route path="/" exact>*/}
-                {/*    <Login/>*/}
-                {/*</Route>*/}
-                {/*<Route path="/signup">*/}
-                {/*    <Signup/>*/}
-                {/*</Route>*/}
             </>
 
         )
