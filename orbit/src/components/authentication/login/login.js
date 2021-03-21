@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import axios from 'axios'
 
 import {Button, Jumbotron, Form, Nav} from 'react-bootstrap';
-import {signin, signup} from "../../../helpers/auth";
+import {signin} from "../../../helpers/auth";
 
 import './login.scss'
-import {Link} from "wouter";
 
 class Login extends Component {
 
