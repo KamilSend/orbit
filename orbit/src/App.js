@@ -14,7 +14,25 @@ class App extends Component {
     }
 
 
+    componentDidMount() {
 
+        auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user.uid)
+                this.setState({
+                    authenticated: true,
+                    userID:user.uid,
+                });
+
+            } else {
+                this.setState({
+                    authenticated: false,
+                });
+            }
+            console.log(this.state.authenticated)
+
+        })
+    }
     render() {
         return (
             <div className="App">
