@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from "axios";
 import { Link, Route } from "wouter";
 import {Navbar, Nav, Button} from 'react-bootstrap';
 import { signout } from '../../helpers/auth'
@@ -204,6 +205,61 @@ class Layout extends Component {
                     VATValue:'',
                     grossValue:'',
                 },}})
+    }
+
+    componentDidMount() {
+
+        axios.get('https://efaktury-d30eb-default-rtdb.firebaseio.com/invoices.json')
+            .then(response => {
+                // console.log(JSON. parse(response.data));
+                console.log(response);
+                const invoices = [{number: response.data.number,
+                    issueDate: response.data.issueDate,
+                    saleDate: response.data.saleDate,
+                    place:response.data.place,
+                    type: response.data.type,
+                    origin: response.data.origin,
+                    NIP: response.data.NIP,
+                    name:response.data.name,
+                    address:response.data.address,
+                    zipCode:response.data.zipCode,
+                    city:response.data.city,
+                    country:response.data.country,
+                    email:response.data.email,
+                    transaction:'',
+                    paymentMethod:response.data.paymentMethod,
+                    paymentStatus:response.data.paymentStatus,
+                    dueDate:response.data.dueDate,
+                    currency:response.data.currency,
+                    account:response.data.account,
+                    accountNumber:response.data.accountNumber,
+                    items: [
+                        {product:response.data.items.product,
+                            PKWiU:response.data.items.PKWiU,
+                            quantity:response.data.items.quantity,
+                            unit:response.data.items.unit,
+                            unitNetPrice:response.data.items.unitNetPrice,
+                            VATRate:response.data.items.VATRate,
+                            VatExemption:'',
+                            GTU:response.data.items.GTU,
+                            VAT:response.data.items.VAT,
+                            grossValue:response.data.items.grossValue},
+                    ],
+                    productAmount:'0',
+                    paid:'',
+                    summary:{
+                        netValue:response.data.summary.netValue,
+                        VATValue:response.data.summary.VATValue,
+                        grossValue:response.data.summary.grossValue,
+                    }}]
+
+                console.log(invoices)
+
+                this.setState({invoices:invoices})
+                }
+            ).catch(function (error) {
+                    console.log(error);
+                })
     }
 
     render(){
