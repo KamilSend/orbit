@@ -49,6 +49,8 @@ const productList = (props) =>{
                 item={props.item}
             />
             <Button onClick={props.addItem}>Dodaj pozycję</Button>
+            <Button onClick={() => props.summaryCounter(props.type)}>Zatwierdź listę pozycji</Button>
+
         </Jumbotron>
     )
 }

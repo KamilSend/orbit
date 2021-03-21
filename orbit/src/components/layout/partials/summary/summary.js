@@ -12,16 +12,24 @@ const summary = (props) =>{
                 <Col><input
                     type="text"
                     disabled
-
+                    value={props.invoiceSummary.netValue}
                 /></Col>
             </Row>
             <Row>
                 <Col>Wartość VAT</Col>
-                <Col><input type="text"/></Col>
+                <Col><input
+                    type="text"
+                    disabled
+                    value={props.invoiceSummary.VATValue}
+                /></Col>
             </Row>
             <Row>
                 <Col>Wartość brutto</Col>
-                <Col><input type="text"/></Col>
+                <Col><input
+                    type="text"
+                    disabled
+                    value={props.invoiceSummary.grossValue}
+                /></Col>
             </Row>
             <Button
                 onClick={props.sendInvoice}
